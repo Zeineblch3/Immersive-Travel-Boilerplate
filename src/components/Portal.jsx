@@ -23,7 +23,6 @@ export const Portal = ({
 
   return (
     <group {...props}>
-      {/* Portal object */}
       <RoundedBox
         name={name}
         args={portalSize}  // Set the portal size
@@ -32,7 +31,6 @@ export const Portal = ({
         onPointerLeave={() => setHovered(null)}
       >
         <MeshPortalMaterial ref={portalMaterial} side={THREE.DoubleSide}>
-          {/* Basic material without texture */}
           <meshStandardMaterial color={portalColor} side={THREE.BackSide} />
         </MeshPortalMaterial>
       </RoundedBox>

@@ -10,7 +10,7 @@ export const Experience = () => {
   const controlsRef = useRef();
   const scene = useThree((state) => state.scene);
 
-  const numPortals = 3;;;  // This will be replaced with the user input
+  const numPortals = 1;;;;;  // This will be replaced with the user input
 
   // Handle camera movement when a portal is activated
   useEffect(() => {
