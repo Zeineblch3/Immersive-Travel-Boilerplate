@@ -10,7 +10,7 @@ export const Experience = () => {
   const controlsRef = useRef();
   const scene = useThree((state) => state.scene);
 
-  const numPortals = 1;;;;;  // This will be replaced with the user input
+  const numPortals = 3;;;  // This will be replaced with the user input
 
   // Handle camera movement when a portal is activated
   useEffect(() => {
@@ -39,7 +39,7 @@ export const Experience = () => {
       <Portal
         key={i}
         name={"Portal " + i}
-        color={i % 2 === 0 ? "#dd8ad6" : "#8ad6dd"}
+        color={i % 2 === 0 ? "#000000" : "#8ad6dd"}
         texture={null}
         position={[positionX, 0, 0]}
         active={active}
