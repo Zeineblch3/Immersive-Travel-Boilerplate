@@ -23,7 +23,7 @@ fi
 echo -e "${GREEN}Updating the project to include $numPortals portals...${NC}"
 
 # Path to the existing Experience.jsx file
-experience_file="C:/Users/Lenovo/Desktop/immersive-travel-boilerplate/src/components/Experience.jsx"
+experience_file="./src/components/Experience.jsx"
 
 if [ ! -f "$experience_file" ]; then
   echo -e "${RED}Error: $experience_file not found! Please ensure this is the correct project directory.${NC}"

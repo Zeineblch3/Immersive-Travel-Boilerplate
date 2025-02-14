@@ -1,8 +1,8 @@
-import { CameraControls, Environment } from "@react-three/drei"; 
-import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useThree } from "@react-three/fiber";
+import { CameraControls, Environment } from "@react-three/drei";
 import * as THREE from "three";
-import { Portal } from './Portal'; // Import the Portal component
+import { Portal } from "./Portal"; // Import the Portal component
 
 export const Experience = () => {
   const [active, setActive] = useState(null);
@@ -10,7 +10,20 @@ export const Experience = () => {
   const controlsRef = useRef();
   const scene = useThree((state) => state.scene);
 
-  const numPortals = 3;;;  // This will be replaced with the user input
+  // Define the number of portals dynamically set by user input)
+  const numPortals = 3;;; // This can be updated by the Bash script or user input
+
+  // Generate portal configurations dynamically
+  const portalConfigurations = [];
+  const spacing = 3; // Adjust the spacing between portals
+  for (let i = 1; i <= numPortals; i++) {
+    portalConfigurations.push({
+      name: `Portal_${i}`, // Default name
+      texture: null, // Default texture (can be a URL or null)
+      position: [(i - Math.ceil(numPortals / 2)) * spacing, 0, 0], // Default position
+      rotationY: 0, // Default rotation
+    });
+  }
 
   // Handle camera movement when a portal is activated
   useEffect(() => {
@@ -31,25 +44,6 @@ export const Experience = () => {
     }
   }, [active, scene]);
 
-  const portals = [];
-  const spacing = 3;  // Adjust the spacing between portals
-  for (let i = 1; i <= numPortals; i++) {
-    const positionX = (i - Math.ceil(numPortals / 2)) * spacing;  // Create space between portals
-    portals.push(
-      <Portal
-        key={i}
-        name={"Portal " + i}
-        color={i % 2 === 0 ? "#000000" : "#8ad6dd"}
-        texture={null}
-        position={[positionX, 0, 0]}
-        active={active}
-        setActive={setActive}
-        hovered={hovered}
-        setHovered={setHovered}
-      />
-    );
-  }
-
   return (
     <>
       <ambientLight intensity={0.5} />
@@ -59,7 +53,19 @@ export const Experience = () => {
         maxPolarAngle={Math.PI / 2}
         minPolarAngle={Math.PI / 6}
       />
-      {portals}
+      {portalConfigurations.map((portal, index) => (
+        <Portal
+          key={index}
+          name={portal.name}
+          texture={portal.texture}
+          position={portal.position}
+          rotationY={portal.rotationY}
+          active={active}
+          setActive={setActive}
+          hovered={hovered}
+          setHovered={setHovered}
+        />
+      ))}
     </>
   );
 };
